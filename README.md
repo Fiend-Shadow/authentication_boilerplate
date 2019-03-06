@@ -1,3 +1,6 @@
+[![tippin.me](https://badgen.net/badge/%E2%9A%A1%EF%B8%8Ftippin.me/@james_r_perkins/F0918E)](https://tippin.me/@james_r_perkins)
+
+
 # authentication boilerplate
 
 This is an authentication boilerplate for a node backend.
