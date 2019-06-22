@@ -1,75 +1,45 @@
-[![tippin.me](https://badgen.net/badge/%E2%9A%A1%EF%B8%8Ftippin.me/@james_r_perkins/F0918E)](https://tippin.me/@james_r_perkins)
+<h1 align="center">Welcome to authentication-boilerplate 👋</h1>
+<p>
+  <img src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="https://twitter.com/james_r_perkins">
+    <img alt="Twitter: james_r_perkins" src="https://img.shields.io/twitter/follow/james_r_perkins.svg?style=social" target="_blank" />
+  </a>
+</p>
 
+> JWT authentication boilerplate using Mongo and Node
 
-# authentication boilerplate
+## Install
 
-This is an authentication boilerplate for a node backend.
+```sh
+npm install
+```
 
-Looking for a docker supported version check out the [docker branch](https://github.com/perkinsjr/authentication_boilerplate/tree/docker-support)
+## Usage
 
-## Needed to run
+```sh
+npm run start
+```
 
-1. Sendgrid account (free tier is 100 emails a day )
-2. Node
-3. Mongo
-4. Postman or App to link
+## Run tests
 
+```sh
+npm run test
+```
 
-## How to setup
-First go ahead and change these to your email a key of your choice and sendgrid user and password.  
-  
-    APP_SECRET=somekey
-    SEND_GRID_EMAIL= your@email.com
-    SEND_GRID_USER=[sendgriduser]
-    SEND_GRID_PASS=[sendgridpass]
+## Author
 
-Then run npm install and then npm run dev.
+👤 **James Perkins**
+
+* Twitter: [@james_r_perkins](https://twitter.com/james_r_perkins)
+* Github: [@perkinsjr](https://github.com/perkinsjr)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
 
 <a href="https://www.patreon.com/james_perkins">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
 
-## API Routes
-
-All routes run through the following 
-
-    /api/auth/
-to run register you need to call a post:
-
-    /api/auth/register 
-  
-    {
-      "fullName":"aname",
-      "email":"email@email.com",
-      "companyName": "name",
-      "password": "password"
-     }
-
-to run login you need to call a post:
-
-    /api/auth/login 
-  
-    {
-      "email":"email@email.com",
-      "password": "password"
-     }
-     
-to run forgot password you need to call a post:
-
-    /api/auth/forgot-password 
-  
-    {
-      "email":"email@email.com",
-     }
-     
- to run resetPassword you need to call a post:
-
-    /api/auth/reset-password
-  
-    {
-      "password":"newpassword",
-      "confirmPassword":"newpassword",
-      reset_password_token: "reset_token_from_email"
-     }
-     
-Any issues or feature requests please use the issue template (ISSUE_TEMPLATE.MD  in the root)
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
