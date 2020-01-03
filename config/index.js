@@ -11,6 +11,7 @@ module.exports = {
   },
   sendgrid: {
     apiKey: process.env.SEND_GRID_API,
-    email: process.env.SEND_GRID_EMAIL
+    email: process.env.SEND_GRID_EMAIL,
+    name: process.env.SEND_GRID_NAME
   }
 }

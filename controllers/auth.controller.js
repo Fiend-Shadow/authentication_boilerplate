@@ -73,7 +73,10 @@ exports.forgot_password = function (req, res) {
       const url = `http://localhost:4200/auth/reset-password?token=${token}`;
       const msg = {
         to: user.email,
-        from: config.sendgrid.email,
+        from: {
+          email:config.sendgrid.email,
+          name: config.sendgrid.name
+        },
         subject: 'Password help has arrived!',
         html: `<head>
         <title>Password Reset Request</title>
@@ -94,7 +97,7 @@ exports.forgot_password = function (req, res) {
         if (!error) {
           return res.json({ message: 'Kindly check your email for further instructions' });
         } else {
-          return res.status(422).json({ error: 'There was a problem with Sendgrid, check your API key'});
+          return res.status(422).json({ error: `There was a problem with Sendgrid, check your API key`});
         }
       });
     }
