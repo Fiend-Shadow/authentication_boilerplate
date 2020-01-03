@@ -7,31 +7,9 @@ const httpStatus = require('http-status')
 const crypto = require('crypto')
 const async = require('async')
 const bcrypt = require('bcrypt-nodejs')
-const path = require('path')
-const hbs = require('nodemailer-express-handlebars')
-const nodemailer = require('nodemailer')
-const sgTransport = require('nodemailer-sendgrid-transport');
+const sgMail = require('@sendgrid/mail');
 
-
-
-
-const options = {
-  auth: {
-    api_user: config.sendgrid.user,
-    api_key: config.sendgrid.pass
-  }
-}
-
-const smtpTransport = nodemailer.createTransport(sgTransport(options));
-
-
-const handlebarsOptions = {
-  viewEngine: 'handlebars',
-  viewPath: path.resolve(__dirname, 'templates/'),
-  extName: '.html'
-};
-
-smtpTransport.use('compile', hbs(handlebarsOptions));
+sgMail.setApiKey(config.sendgrid.apiKey);
 
 
 exports.register = async (req, res, next) => {
@@ -92,21 +70,31 @@ exports.forgot_password = function (req, res) {
         })
     },
     function (token, user, done) {
-      var data = {
+      const url = `http://localhost:4200/auth/reset-password?token=${token}`;
+      const msg = {
         to: user.email,
         from: config.sendgrid.email,
-        template: 'forgot-password-email',
         subject: 'Password help has arrived!',
-        context: {
-          url: 'http://localhost:4200/auth/reset-password?token=' + token
-        }
+        html: `<head>
+        <title>Password Reset Request</title>
+    </head>
+    
+    <body>
+        <div>
+            <p>Copy this link ${url} to reset your password </p>
+            <br>
+            <div>
+                Cheers!
+            </div>
+        </div>
+       
+    </body>`,
       };
-
-      smtpTransport.sendMail(data, function (err) {
-        if (!err) {
+      sgMail.send(msg, (error, result) => {
+        if (!error) {
           return res.json({ message: 'Kindly check your email for further instructions' });
         } else {
-          return res.status(422).json({ error: 'There was an error trying to send Sendgrid, this is usually wrong auth.' });
+          return res.status(422).json({ error: 'There was a problem with Sendgrid, check your API key'});
         }
       });
     }

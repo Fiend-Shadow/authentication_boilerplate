@@ -10,8 +10,7 @@ module.exports = {
     testURI: process.env.MONGOTESTURI
   },
   sendgrid: {
-    email: process.env.SEND_GRID_EMAIL,
-    user: process.env.SEND_GRID_USER,
-    pass: process.env.SEND_GRID_PASS
+    apiKey: process.env.SEND_GRID_API,
+    email: process.env.SEND_GRID_EMAIL
   }
 }
